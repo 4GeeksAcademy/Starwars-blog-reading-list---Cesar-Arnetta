@@ -1,7 +1,5 @@
-
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { useState } from "react";
 import { useFavorites } from "../hooks/favoriteReducer";
 
 
@@ -22,7 +20,7 @@ export const Card = ({ name, gender, hairColor, eyeColor, id, type, typeImage })
     const handleFavorite = (e) => {
         e.stopPropagation();
         const character = { id, name };
-        favoriteReducer({ type: "ADD_FAVORITE", payload: character });  // Despachar al contexto de favoritos
+        favoriteReducer({ type: "addFavorite", payload: character });  // Despachar al contexto de favoritos
       };
     
 

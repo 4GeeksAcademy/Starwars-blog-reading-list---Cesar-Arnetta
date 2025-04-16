@@ -9,7 +9,7 @@ export const initialFavoritesState = () => {
 
 export const favoritesReducer = (state = initialFavoritesState(), action) => {
     switch (action.type) {
-        case "ADD_FAVORITE":
+        case "addFavorite":
             // Crear un nuevo favorito con un identificador único (uid)
             const newFavorite = {
               ...action.payload,
@@ -24,7 +24,7 @@ export const favoritesReducer = (state = initialFavoritesState(), action) => {
             localStorage.setItem('starWarsFavorites', JSON.stringify(newFavoritesState));
             return newFavoritesState;
       
-            case "REMOVE_FAVORITE":
+            case "removeFavorite":
                 // Eliminar solo el favorito con el uid específico
                 const updatedFavorites = state.favorites.filter(fav => fav.uid !== action.payload.uid);
     

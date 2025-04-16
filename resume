@@ -1,0 +1,9 @@
+Archivos importanes y sus funcionalidades
+
+starWarsServices: sirve para hacer todos los fetchs que sean necesarios, inclusive mapear y hacer fetch del resultado de esos mapeos. Se encarga también despachar la información incial a la store global del proyecto, setearla en el local storage del navegador. 
+
+El componente Card almacenará toda la información de los mapeos generados en el componente Home. Card distribuirá todos los parametros para darle forma al componente. A parte de eso, en el entorno del proyecto se hace uso del parametro type para definir la ruta interna para single en conjunto con el id y del parametro type image junto con el id, para poder obtener la imagen de otro repositorio que tiene alojada esa información.
+
+Además, el Card despacha información de otro store creado exclusivamente para almacenar los favoritos. El cual estará mapeando en el componente Navbar. Card también tiene un botón que es el encargado de redirigir a la información detallada de cada elemento en cada categoría, creando un link con los parametros id, type y typr image comentados anteriormente.
+
+El Home hace un mapeo del store global de la app y lo renderiza a través del componente Card. Este proceso se repite por cada catagoría. El resto del proyecto se basa en diseño implementado con bootsrap manejo de las funciones, control de los parametros y manipulación de la datos en store.

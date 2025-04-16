@@ -1,5 +1,3 @@
-
-
 import { Link } from "react-router-dom";
 import { useFavorites } from "../hooks/favoriteReducer";
 
@@ -12,7 +10,7 @@ export const Navbar = () => {
 
   const handleRemoveFavorite = (favorite, e) => {
 	e.stopPropagation()
-    dispatch({ type: "REMOVE_FAVORITE", payload: { uid: favorite.uid } }); // Elimina solo el favorito con el uid específico
+    dispatch({ type: "removeFavorite", payload: { uid: favorite.uid } }); // Elimina solo el favorito con el uid específico
   };
 
   return (

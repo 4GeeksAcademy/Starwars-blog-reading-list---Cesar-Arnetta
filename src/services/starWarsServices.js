@@ -1,17 +1,18 @@
 export const starWarsServices = {
 
-  // GET functions
+  // Fetch functions
   fetchStarWarsData: async (dispatch) => {
     const apiUrl = "https://www.swapi.tech/api/";
     const localStorageKey = 'starWarsData';
 
     try {
-      // Paso 1: Despachamos que se está cargando
+      // Paso 1: Despachamos que se está cargando, el local storage nos permite traer la información que posteriormente fue seteada
+      // al final de esta secuencia de gets y disptachs. Si hay información la traera de forma local de una forma más rápida, porque
+      // estará almacenada en e local storage del navegador. 
 
       const storedData = localStorage.getItem(localStorageKey);
       if (storedData) {
         const parsedData = JSON.parse(storedData);
-
 
         dispatch({ type: 'setData', category: 'films', data: parsedData.films });
         dispatch({ type: 'setData', category: 'people', data: parsedData.people });
@@ -25,8 +26,6 @@ export const starWarsServices = {
       // Hacemos la solicitud inicial para obtener las URLs de cada categoría
       const response = await fetch(apiUrl);
       const data = await response.json();
-      console.log(data);
-      
 
       // Paso 2: Extraemos las URLs para cada categoría
       const peopleUrl = data.result.people;
@@ -35,7 +34,7 @@ export const starWarsServices = {
       const starshipsUrl = data.result.starships;
       const vehiclesUrl = data.result.vehicles;
 
-      // Paso 3: Obtener los datos de las categorías usando Promise.all
+      // Paso 3: Obtener los datos de las categorías usando Promise.all (otra forma de escribirlo)
       const [peopleResponse, planetsResponse, speciesResponse, starshipsResponse, vehiclesResponse] = await Promise.all([
         fetch(peopleUrl),
         fetch(planetsUrl),
@@ -45,8 +44,6 @@ export const starWarsServices = {
       ]);
 
       const peopleData = await peopleResponse.json();
-      console.log(peopleData);
-
       const planetsData = await planetsResponse.json();
       const speciesData = await speciesResponse.json();
       const starshipsData = await starshipsResponse.json();
@@ -69,7 +66,8 @@ export const starWarsServices = {
       const vehiclesDetails = await Promise.all(vehiclesDetailsPromises);
 
       const starWarsData = {
-        films: [],  // Puedes agregar los detalles de las películas si lo deseas
+        films: [],  // No agrego peliculas, ya que contiene la misma información que las otras categorías y me parecìa interesante
+        // solo mostrar lo demás
         people: peopleDetails,
         planets: planetsDetails,
         species: speciesDetails,
@@ -77,6 +75,7 @@ export const starWarsServices = {
         vehicles: vehiclesDetails,
       };
 
+    // esto setea al local storage del navegador
 
       localStorage.setItem(localStorageKey, JSON.stringify(starWarsData));
 
