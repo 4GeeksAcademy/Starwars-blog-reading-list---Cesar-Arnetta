@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   const handleRemoveFavorite = (favorite, e) => {
 	e.stopPropagation()
-    dispatch({ type: "removeFavorite", payload: { uid: favorite.uid } }); // Elimina solo el favorito con el uid específico
+    dispatch({ type: "removeFavorite", payload: { id: favorite.id } }); // Elimina solo el favorito con el id específico
   };
 
   return (
